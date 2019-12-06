@@ -1,0 +1,125 @@
+\documentclass[UTF8]{article}
+\usepackage{ctex}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{ulem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[top = 0.8in, bottom = 0.8in, left = 0.8in, right = 0.8in]{geometry}
+\usepackage{cite}
+\bibliographystyle{plain}
+
+\newcommand \insertsubject {{车牌识别大作业报告}}
+
+\hypersetup
+{
+	pdfauthor = 李沿橙 1900012766,
+	pdftitle = \insertsubject,
+	pdfsubject = \insertsubject,
+	pdfkeywords = \insertsubject,
+	colorlinks = true,
+	linkcolor = black,
+	anchorcolor = black,
+	citecolor = black,
+	urlcolor = black
+}
+
+\title{\insertsubject}
+\author{李沿橙 1900012766}
+\date{\today}
+
+\begin{document}
+
+	\maketitle
+
+	\section{数据准备}
+
+	\subsection{文件结构}
+
+	下面的树形列表给出了原数据的结构，便于接下来对数据的加工：
+	
+	\begin{multicols}{2}
+	\begin{itemize}
+		\item Plate\_dataset/AC
+		\begin{itemize}
+			\item test
+			\begin{itemize}
+				\item jpeg
+				\begin{itemize}
+					\item 1.jpg
+					\item 2.jpg
+					\item ……
+				\end{itemize}
+				\item xml
+				\begin{itemize}
+					\item 1.xml
+					\item 2.xml
+					\item ……
+				\end{itemize}
+			\end{itemize}
+			\item train
+			\begin{itemize}
+				\item jpeg
+				\begin{itemize}
+					\item 1.jpg
+					\item 2.jpg
+					\item ……
+				\end{itemize}
+				\item xml
+				\begin{itemize}
+					\item 1.xml
+					\item 2.xml
+					\item ……
+				\end{itemize}
+			\end{itemize}
+		\end{itemize}
+		\item Chars\_data
+		\begin{itemize}
+			\item 0
+			\begin{itemize}
+				\item *.jpg（文件名格式不固定）
+			\end{itemize}
+			\item ……
+			\item A
+			\item ……
+		\end{itemize}
+	\end{itemize}
+	\end{multicols}
+
+	\subsection{xml 文件}
+
+	train 和 test 中的 xml 文件结构相同，里面包含了\cite{homework}：
+	
+	\begin{multicols}{2}
+	\begin{itemize}
+		\item 对应的图片文件名
+		\item 长宽（总为 $352 \times 240$）、通道数（3）
+		\item object 标签
+		\begin{itemize}
+			\item name（总为 plate）
+			\item platetext（车牌号）
+			\item bndbox（车牌的\textbf{矩形}范围）
+			\begin{itemize}
+				\item xmin
+				\item ymin
+				\item xmax
+				\item ymax
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+	\end{multicols}
+	
+	\subsection{将数据整合到 DataLoader}
+
+	为了便于后续的训练，需要把以上数据放入 DataLoader。方法是：准备好数据后，使用 TensorDataset 合并图片和标签，再将这个 TensorDataset 作为参数传给 DataLoader。\cite{dataloader}
+
+	\bibliography{ref}
+
+\end{document}
