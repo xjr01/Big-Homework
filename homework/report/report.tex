@@ -44,7 +44,7 @@
 	\subsection{文件结构}
 
 	下面的树形列表给出了原数据的结构，便于接下来对数据的加工：
-	
+
 	\begin{multicols}{2}
 	\begin{itemize}
 		\item Plate\_dataset/AC
@@ -96,7 +96,7 @@
 	\subsection{xml 文件}
 
 	train 和 test 中的 xml 文件结构相同，里面包含了\cite{homework}：
-	
+
 	\begin{multicols}{2}
 	\begin{itemize}
 		\item 对应的图片文件名
@@ -115,10 +115,6 @@
 		\end{itemize}
 	\end{itemize}
 	\end{multicols}
-	
-	\subsection{将数据整合到 DataLoader}
-
-	为了便于后续的训练，需要把以上数据放入 DataLoader。方法是：准备好数据后，使用 TensorDataset 合并图片和标签，再将这个 TensorDataset 作为参数传给 DataLoader。\cite{dataloader}
 
 	\bibliography{ref}
 
